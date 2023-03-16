@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Search Result</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#!">ABC Jobs Pte Ltd</a>
+            <a class="btn btn-primary btn-sm" href="/logout">Sign out</a>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <!-- links for update profile -->
+            <a class="nav-link text-light" href="#!">Update Profile</a>
+        </div>
+    </nav>
+    <!-- page for displaying search result -->
+    <section class="page-section pt-5" id="search">
+        <div class="container">
+            <!-- search input -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <form action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for developers" name="query"
+                                aria-label="Search for developers" aria-describedby="button-addon2" th:value="${query}">
+                            <button class="btn btn-primary" type="button" id="button-addon2">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <h2 class="section-heading" th:unless="${noResults}">[[|Search Result for "${query}"|]]</h2>
+                <h2 class="section-heading" th:if="${noResults}">[[|No Result Found for "${query}"|]]</h2>
+            </div>
+            <!-- show developers in card -->
+            <div class="row mt-4" th:unless="${noResults}">
+                <div class="col-md-4" th:each="userProfile: ${userProfiles}">
+                    <div class="card">
+                        <div class="card-header">
+                            <a th:href="|/profile/${userProfile.user.id}|" th:text="${userProfile.fullName}">John Doe</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-text">
+                                Job: [[${userProfile.job}]]
+                                <span class="text-muted d-block" th:text="|Location: ${userProfile.location}|"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script th:src="@{/js/scripts.js}"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+</html>

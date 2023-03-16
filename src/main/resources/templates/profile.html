@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Profile</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#!">ABC Jobs Pte Ltd</a>
+            <a class="btn btn-primary btn-sm" href="/logout">Sign out</a>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <!-- links for update profile -->
+            <a class="nav-link text-light" href="#!">Update Profile</a>
+        </div>
+    </nav>
+    <!-- page for displaying search result -->
+    <section class="page-section pt-5" id="search">
+        <div class="container" th:if="${user.userProfile}">
+            <div class="text-center mt-2">
+                <h2 class="section-heading" th:text="|${user.userProfile.fullName}'s Profile|">John Doe's Profile</h2>
+            </div>
+            <!-- profile containing full name, email, phone, location, education, dan job -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6 mt-3">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Full Name</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted" th:text="${userProfile.fullName}">John Doe</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Email</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted"><a th:href="|mailto:${user.email}|" th:text="${user.email}">john@mail.test</a></h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Phone</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted" th:text="${userProfile.phone}">+65 12345678</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Location</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted" th:text="${userProfile.location}">Singapore</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Education</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted" th:text="${userProfile.education}">Computer Science</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mt-2">
+                                        <h4>Job</h4>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="mt-2">
+                                        <h4 class="text-muted" th:text="${userProfile.job}">Software Engineer</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" th:unless="${userProfile}">
+            <div class="text-center mt-2">
+                <h2 class="section-heading">Profile Not Found</h2>
+            </div>
+        </div>
+    </section>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script th:src="@{/js/scripts.js}"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+
+</html>
